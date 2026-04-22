@@ -1,0 +1,10 @@
+.DS_Store
+node_modules/
+*.log
+.env
+.env.local
+dist/
+build/
+
+# Local AI-agent settings (not part of the package)
+.claude/settings.local.json
