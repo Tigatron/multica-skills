@@ -37,16 +37,29 @@ multica autopilot create \
   --title "Nightly bug triage" \
   --description "Scan todo issues and raise priority on anything critical." \
   --agent "Lambda" \
-  --mode create_issue
+  --mode create_issue \
+  --priority high \
+  --project <project-id> \
+  --issue-title-template "Triage: {{date}}"
 
 multica autopilot update <id> --status paused
 multica autopilot update <id> --description "New prompt"
+multica autopilot update <id> --project ""              # Clear project association
 multica autopilot delete <id>
 ```
 
-Create flags: `--title`, `--description` (this is the prompt the agent receives each run), `--agent` (name or UUID), `--mode`.
+Create flags:
+- `--title` (required) — autopilot name
+- `--description` — the prompt the agent receives each run
+- `--agent` (required) — assignee name or UUID
+- `--mode` (required) — `create_issue` (the only supported mode end-to-end today)
+- `--priority` (default `none`) — priority for the issues this autopilot creates (`none`, `low`, `medium`, `high`, `urgent`)
+- `--project` — optional project ID; created issues are filed under it
+- `--issue-title-template` — title template applied to each created issue (server-side variable interpolation)
 
 **`--mode` only accepts `create_issue` today.** Each fire creates a new issue, assigns it to the agent, and records a run. The data model defines `run_only` but is not exposed via CLI.
+
+`update` accepts the same flag set plus `--status` (`active`, `paused`). Pass `--project ""` to clear the project association.
 
 ## Manual trigger and run history
 
@@ -64,11 +77,13 @@ Triggers are the attachment that turns an autopilot from "manual" into "schedule
 # Add: standard POSIX cron, timezone as IANA name
 multica autopilot trigger-add <autopilot-id> \
   --cron "0 9 * * 1-5" \
-  --timezone "America/New_York"
+  --timezone "America/New_York" \
+  --label "Weekday morning"           # Optional, human-readable
 
-# Update (pause / resume)
+# Update (pause / resume / relabel)
 multica autopilot trigger-update <autopilot-id> <trigger-id> --enabled=false
 multica autopilot trigger-update <autopilot-id> <trigger-id> --cron "0 17 * * 5"
+multica autopilot trigger-update <autopilot-id> <trigger-id> --label "Friday wrap-up"
 
 # Delete
 multica autopilot trigger-delete <autopilot-id> <trigger-id>

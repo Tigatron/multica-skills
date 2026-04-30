@@ -40,14 +40,22 @@ curl -fsSL https://raw.githubusercontent.com/multica-ai/multica/main/scripts/ins
 
 ## One-command bootstrap
 
-`multica setup` configures the CLI, opens a browser for OAuth, and starts the daemon.
+`multica setup` is now a parent command with two subcommands. It configures the CLI, opens a browser for OAuth, and starts the daemon.
 
 ```bash
-multica setup                  # Multica Cloud
-multica setup self-host        # Local self-hosted (http://localhost:8080 / :3000)
+multica setup cloud                                                # Multica Cloud (multica.ai)
+multica setup                                                      # Alias for `setup cloud`
+
+multica setup self-host                                            # Local self-hosted (http://localhost:8080 / :3000)
 multica setup self-host --port 9090 --frontend-port 4000
 multica setup self-host --server-url https://api.example.com --app-url https://app.example.com
 ```
+
+`setup self-host` flags:
+- `--server-url` — full backend URL (e.g. `https://api.internal.co`)
+- `--app-url` — full frontend URL (e.g. `https://app.internal.co`)
+- `--port` (default 8080) — backend port when `--server-url` is not set
+- `--frontend-port` (default 3000) — frontend port when `--app-url` is not set
 
 After setup, the daemon runs in the background. Verify with `multica daemon status` and `multica auth status`.
 
@@ -86,8 +94,9 @@ multica setup self-host --profile staging \
   --server-url https://api-staging.example.com \
   --app-url https://staging.example.com
 
-multica daemon start --profile staging     # Runs in parallel with default
-multica auth status --profile staging
+multica daemon start    --profile staging     # Runs in parallel with default
+multica daemon restart  --profile staging     # Restart just this profile
+multica auth status     --profile staging
 ```
 
 All other commands accept `--profile <name>` the same way.
@@ -107,10 +116,10 @@ After any setup flow, confirm all three succeed before handing off to another sk
 ```bash
 multica auth status                        # "Authenticated as <user>"
 multica daemon status                      # "Running" with a PID
-multica workspace list                     # At least one workspace, watched ones marked with *
+multica workspace list                     # At least one workspace
 ```
 
-If a workspace the user cares about is not watched, use the `multica-daemon` skill to `watch` it before assigning work.
+`multica login` automatically watches every workspace the user belongs to — there is no per-workspace `watch` toggle in the CLI. If a workspace is missing from the list, the user does not have membership; have it granted server-side and re-run `multica login`.
 
 ## Gotchas
 
