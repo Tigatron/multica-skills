@@ -4,13 +4,15 @@ Agent skills that let any AI coding agent — Claude Code, Codex, Cursor, OpenCo
 
 Once installed, an agent can:
 
-- create and assign issues to Multica agents
+- create, update, archive, and assign Multica agents
+- create and assign issues, including search, rerun, and attachments
 - schedule recurring tasks via autopilots and cron
 - manage projects, sprints, and epics
-- run and diagnose the local agent daemon
+- create, import, and edit workspace skills
+- run and diagnose the local agent daemon, plus inspect runtimes across machines
 - bootstrap a fresh machine end-to-end
 
-All six skills call the official `multica` CLI — nothing is reimplemented, nothing talks to the Multica API directly.
+All seven skills call the official `multica` CLI — nothing is reimplemented, nothing talks to the Multica API directly.
 
 ## Install
 
@@ -50,12 +52,13 @@ npx skills remove multica-issues # Uninstall one
 
 | Skill | What it does |
 |-------|--------------|
-| `multica-setup`     | Install CLI, authenticate, bootstrap daemon, manage profiles |
-| `multica-issues`    | Issue CRUD, comments, subscribers, execution runs |
-| `multica-agents`    | Discover agents and delegate work |
+| `multica-setup`     | Install CLI, authenticate (cloud / self-host), bootstrap daemon, manage profiles |
+| `multica-issues`    | Issue CRUD, search, rerun, comments, subscribers, attachments, execution runs |
+| `multica-agents`    | Agent CRUD (create / update / archive / restore), skill assignment, delegation |
 | `multica-projects`  | Sprint / epic / workstream containers |
 | `multica-autopilot` | Scheduled and on-demand recurring agent tasks |
-| `multica-daemon`    | Local runtime lifecycle, workspace watch, profiles |
+| `multica-skills`    | Workspace skill CRUD, import from clawhub.ai / skills.sh, file management |
+| `multica-daemon`    | Local daemon lifecycle, profiles, plus `multica runtime` cross-machine control |
 
 Each skill is a standalone directory under `skills/` containing a single `SKILL.md` file with YAML frontmatter (`name`, `description`) followed by Markdown instructions — the [Agent Skills](https://github.com/vercel-labs/skills) format.
 

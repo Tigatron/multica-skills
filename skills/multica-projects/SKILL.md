@@ -85,5 +85,5 @@ multica project status "$OLD" completed
 ## Gotchas
 
 - Deleting a project does **not** delete its issues — they just become project-less. Confirm intent before calling `project delete`.
-- Icons are short strings, not emoji-only; any short glyph works.
+- `--icon` is documented as an emoji in the CLI help; short glyphs / single characters also render acceptably in most clients.
 - A project lead is informational (shown on the project card) and does not auto-assign issues to that lead.

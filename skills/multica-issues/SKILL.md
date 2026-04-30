@@ -19,21 +19,27 @@ Official docs: https://github.com/multica-ai/multica/blob/main/CLI_AND_DAEMON.md
 - Creating a task for an agent (the core "assign work" workflow).
 - Listing or filtering the board.
 - Updating status, priority, or title.
-- Reading / writing comments on an issue.
+- Reading / writing comments on an issue (with file attachments).
 - Subscribing someone to issue notifications.
 - Inspecting what an agent did — execution runs and message logs.
+- Re-running a stuck or failed task without re-creating the issue.
+- Searching issues by free-text query.
 
 ## Core commands
 
 ```bash
-multica issue list
+multica issue list                                         # Default 50 results
 multica issue list --status in_progress
 multica issue list --priority urgent --assignee "Lambda"
 multica issue list --project <project-id> --limit 20
-multica issue list --output json           # For programmatic parsing
+multica issue list --limit 100 --offset 100                # Pagination
+multica issue list --output json                           # For programmatic parsing
 
 multica issue get <id>
 multica issue get <id> --output json
+
+multica issue search "auth middleware"                     # Full-text on title + description
+multica issue search "flaky test" --include-closed --limit 50
 ```
 
 Valid `--status` values: `backlog`, `todo`, `in_progress`, `in_review`, `done`, `blocked`, `cancelled`.
@@ -49,14 +55,18 @@ multica issue create \
   --description "The e2e login test fails ~10% of the time on CI. Investigate and stabilize." \
   --priority high \
   --assignee "Lambda" \
-  --project <project-id>
+  --project <project-id> \
+  --attachment ./screenshot.png \
+  --attachment ./failing-trace.log
 ```
 
-Flags: `--title` (required), `--description`, `--status`, `--priority`, `--assignee`, `--parent` (sub-issue), `--project`, `--due-date`.
+Flags: `--title` (required), `--description`, `--status`, `--priority`, `--assignee`, `--parent` (sub-issue), `--project`, `--due-date` (RFC3339), `--attachment` (repeatable, file path).
 
 Tips:
 - `--assignee` takes a name or UUID. Use `multica agent list` / `multica workspace members <ws-id>` to discover valid names.
 - Put clear acceptance criteria in `--description`. The agent receives it verbatim as task input.
+- `--attachment` can be passed multiple times; each value is a local file path uploaded with the issue.
+- An issue has at most one parent (`parent_issue_id` is single-valued server-side). To build a tree, call `create --parent <parent-id>` once per child.
 - To create many issues, loop over lines and pipe through `--output json` to capture the returned IDs.
 
 ## Updating
@@ -64,12 +74,18 @@ Tips:
 ```bash
 multica issue update <id> --title "New title" --priority urgent
 multica issue update <id> --description "Revised scope..."
-multica issue update <id> --project <project-id>          # Re-attach to a project
+multica issue update <id> --project <project-id>           # Re-attach to a project
+multica issue update <id> --parent <parent-issue-id>       # Make this a sub-issue
+multica issue update <id> --parent ""                      # Clear parent (back to top-level)
 
 multica issue status <id> in_progress                      # Fast status transition
 multica issue assign <id> --to "Lambda"                    # (Re)assign
 multica issue assign <id> --unassign                       # Clear assignee
+
+multica issue rerun <id>                                   # Re-enqueue the current assignee as a fresh task
 ```
+
+`rerun` keeps the existing assignee and description but creates a new run — useful when a task crashed or the agent needs another attempt without re-filing the issue.
 
 ## Comments
 
@@ -79,8 +95,12 @@ Agents post comments as they work — progress updates, blockers, questions. Hum
 multica issue comment list <issue-id>
 multica issue comment add  <issue-id> --content "Looks good, merging now"
 multica issue comment add  <issue-id> --parent <comment-id> --content "Thanks!"
+multica issue comment add  <issue-id> --attachment ./diff.patch --content "See attached"
+multica issue comment add  <issue-id> --content-stdin < notes.md     # Avoid shell escaping for long content
 multica issue comment delete <comment-id>
 ```
+
+`--attachment` is repeatable; `--content-stdin` is mutually exclusive with `--content` (use one or the other).
 
 ## Subscribers (notification routing)
 
@@ -118,6 +138,17 @@ while true; do
 done
 ```
 
+## Downloading attachments
+
+Attachments uploaded with `issue create --attachment` or `issue comment add --attachment` can be pulled back with:
+
+```bash
+multica attachment download <attachment-id>                # To current directory
+multica attachment download <attachment-id> -o /tmp/files  # To a chosen directory
+```
+
+Attachment IDs come from `multica issue get <id> --output json` (look under attachments / comments).
+
 ## Common flows
 
 **Triage todo queue and raise priority on anything blocked:**
@@ -141,5 +172,7 @@ multica issue run-messages "$LATEST"
 - `--assignee "Lambda"` must match a name that exists in the workspace, case-sensitive on some deployments. If a create fails with "assignee not found", run `multica agent list` first.
 - An issue can be assigned to a human member instead of an agent — they look identical to the CLI; members will not auto-execute.
 - `multica issue status` uses a positional value (`multica issue status <id> in_progress`), not a flag.
-- `--parent <issue-id>` creates a sub-issue relationship; it is *not* the same as `--project`.
+- `--parent <issue-id>` creates a sub-issue relationship; it is *not* the same as `--project`. Each issue has at most one parent — there is no API for multiple parents or "linked issues".
 - `status done` does not prevent future edits; the issue can be reopened by transitioning back to `todo` or `in_progress`.
+- `multica issue search` only matches title and description; it does not look inside comments. By default closed issues are excluded — pass `--include-closed` to see them.
+- `multica issue rerun` will silently no-op if the issue has no assignee — assign first, then rerun.
