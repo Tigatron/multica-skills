@@ -5,6 +5,7 @@ USAGE
 
 COMMANDS
   archive:  Archive an agent
+  avatar:   Upload an avatar image for an agent
   create:   Create a new agent
   get:      Get agent details
   list:     List agents in the workspace

@@ -40,9 +40,10 @@ multica skill delete <skill-id> --yes               # Skip prompt
 
 multica skill import --url https://clawhub.ai/skills/<id>
 multica skill import --url https://skills.sh/<slug>
+multica skill import --url https://github.com/owner/skill-repo            # Github skill repos are also accepted
 ```
 
-`multica skill import` only accepts URLs from `clawhub.ai` or `skills.sh`. Other URLs are rejected.
+`multica skill import` accepts URLs from `clawhub.ai`, `skills.sh`, and `github.com`. Other hosts are rejected.
 
 ## Skill files
 
@@ -100,7 +101,7 @@ done
 ## Gotchas
 
 - `--content` for `skill create` / `update` and `--content` for `skill files upsert` both expect raw string content, not file paths. Use `"$(cat file.md)"` to inline a file. Very large content may hit shell argv limits — split into multiple `files upsert` calls if needed.
-- `skill import` is restricted to `clawhub.ai` and `skills.sh` hosts; arbitrary URLs are rejected by the server.
+- `skill import` accepts `clawhub.ai`, `skills.sh`, and `github.com` URLs; arbitrary hosts are rejected by the server.
 - `agent skills set` is *replace*, not *append* — listing only one ID will unassign every other skill currently on that agent. Read the current set with `multica agent skills list <agent-id> --output json` first if you only want to add.
 - `skill files upsert --path` is the file's logical path inside the skill, not a local filesystem path. Forward slashes are fine; the path is opaque to the server.
 - A workspace skill is independent of the `multica-skills` GitHub repo — the latter installs *agent* skill files locally via `npx skills`, while the former lives on the Multica server and is delivered to agents at run time.

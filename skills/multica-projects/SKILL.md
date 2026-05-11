@@ -14,6 +14,7 @@ Official docs: https://github.com/multica-ai/multica/blob/main/CLI_AND_DAEMON.md
 - The user wants to start a new sprint, epic, or initiative.
 - Filtering the board by a container larger than a single issue.
 - Assigning a lead (human or agent) responsible for a body of work.
+- Attaching github_repo (or other) resources so agents working on the project can find the code.
 - Closing out / archiving a completed sprint.
 
 ## Core commands
@@ -27,18 +28,42 @@ multica project get <id>
 multica project get <id> --output json
 
 multica project create --title "2026 Week 16 Sprint" --icon "S" --lead "Lambda"
+multica project create --title "Auth rewrite" --repo https://github.com/acme/api --repo https://github.com/acme/web   # Attach repos inline
 multica project update <id> --title "New title" --status in_progress
 multica project update <id> --lead "Lambda"
 
+multica project list --full-id                              # Show full UUIDs in table output
 multica project status <id> in_progress
 multica project delete <id>
 ```
 
-Create flags: `--title` (required), `--description`, `--status`, `--icon`, `--lead`.
-Update flags: same set, all optional.
+Create flags: `--title` (required), `--description`, `--status`, `--icon`, `--lead`, `--repo` (repeatable; shortcut for adding a github_repo resource by URL).
+Update flags: same set minus `--repo`. To attach / detach resources after creation, use `multica project resource` (below).
 Valid statuses: `planned`, `in_progress`, `paused`, `completed`, `cancelled`.
 
 `--lead` takes a name or UUID (same resolution rules as `--assignee` on issues).
+
+## Project resources
+
+A **resource** is something an agent needs to do the work — most commonly a github_repo, but other types (e.g. `notion_page`) exist. Resources attached to a project are visible to any agent assigned an issue in the project.
+
+```bash
+multica project resource list   <project-id>
+multica project resource list   <project-id> --output json
+multica project resource list   <project-id> --full-id
+
+# Most common: attach a github_repo by URL
+multica project resource add    <project-id> --type github_repo --url https://github.com/acme/api
+multica project resource add    <project-id> --type github_repo --url https://github.com/acme/api --default-branch-hint develop
+multica project resource add    <project-id> --type github_repo --url https://github.com/acme/api --label "Backend API"
+
+# Other types: pass a generic JSON payload via --ref
+multica project resource add    <project-id> --type notion_page --ref '{"page_id":"abc123"}'
+
+multica project resource remove <project-id> <resource-id>
+```
+
+`--type` defaults to `github_repo`; `--url` and `--default-branch-hint` are shortcuts that only apply to that type. For other resource types pass the full payload via `--ref` (a JSON object describing the resource); `--ref` overrides the per-type shortcuts when set.
 
 ## Attaching issues to projects
 

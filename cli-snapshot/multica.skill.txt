@@ -8,7 +8,7 @@ COMMANDS
   delete:  Delete a skill
   files:   Work with skill files
   get:     Get skill details (includes files)
-  import:  Import a skill from a URL (clawhub.ai or skills.sh)
+  import:  Import a skill from a URL (clawhub.ai, skills.sh, or github.com)
   list:    List skills in the workspace
   update:  Update a skill
 

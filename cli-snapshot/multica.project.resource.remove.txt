@@ -1,13 +1,11 @@
-List autopilots in the workspace
+Detach a resource from a project
 
 USAGE
-  multica autopilot list [flags]
+  multica project resource remove <project-id> <resource-id> [flags]
 
 FLAGS
-      --full-id         Show full UUIDs in table output
-  -h, --help            help for list
+  -h, --help            help for remove
       --output string   Output format: table or json (default "table")
-      --status string   Filter by status (active, paused)
 
 INHERITED FLAGS
   --help   Show help for command

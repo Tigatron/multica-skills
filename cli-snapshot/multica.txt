@@ -7,6 +7,7 @@ CORE COMMANDS
   agent:      Work with agents
   autopilot:  Manage autopilots (scheduled/triggered agent automations)
   issue:      Work with issues
+  label:      Work with issue labels
   project:    Work with projects
   repo:       Work with repositories
   skill:      Work with skills

@@ -4,8 +4,10 @@ USAGE
   multica issue update <id> [flags]
 
 FLAGS
-      --assignee string      New assignee name (member or agent)
-      --description string   New description
+      --assignee string      New assignee name (member or agent; fuzzy match)
+      --assignee-id string   New assignee UUID (mutually exclusive with --assignee)
+      --description string   New description (decodes \n, \r, \t, \\; pipe via --description-stdin to preserve literal backslashes)
+      --description-stdin    Read new description from stdin (preserves multi-line content verbatim)
       --due-date string      New due date (RFC3339 format)
   -h, --help                 help for update
       --output string        Output format: table or json (default "json")

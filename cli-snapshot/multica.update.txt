@@ -4,7 +4,8 @@ USAGE
   multica update [flags]
 
 FLAGS
-  -h, --help   help for update
+      --download-timeout duration   Maximum time to wait for the release archive download (default 2m0s)
+  -h, --help                        help for update
 
 INHERITED FLAGS
   --help   Show help for command

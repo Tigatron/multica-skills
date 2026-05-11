@@ -4,11 +4,12 @@ USAGE
   multica daemon <command> [flags]
 
 COMMANDS
-  logs:     Show daemon logs
-  restart:  Restart the running daemon (stop + start)
-  start:    Start the local agent runtime daemon
-  status:   Show daemon status
-  stop:     Stop the running daemon
+  disk-usage:  Show daemon workspace disk usage by task or workspace
+  logs:        Show daemon logs
+  restart:     Restart the running daemon (stop + start)
+  start:       Start the local agent runtime daemon
+  status:      Show daemon status
+  stop:        Stop the running daemon
 
 INHERITED FLAGS
   --help   Show help for command

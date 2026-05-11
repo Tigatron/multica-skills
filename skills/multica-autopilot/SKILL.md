@@ -29,6 +29,7 @@ Autopilot  (title, description as agent prompt, mode, agent, status)
 ```bash
 multica autopilot list
 multica autopilot list --status active --output json
+multica autopilot list --full-id                # Show full UUIDs in table output
 
 multica autopilot get <id>
 multica autopilot get <id> --output json    # Includes triggers

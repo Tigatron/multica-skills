@@ -4,6 +4,7 @@ USAGE
   multica project list [flags]
 
 FLAGS
+      --full-id         Show full UUIDs in table output
   -h, --help            help for list
       --output string   Output format: table or json (default "table")
       --status string   Filter by status

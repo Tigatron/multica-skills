@@ -6,7 +6,6 @@ USAGE
 COMMANDS
   activity:  Get hourly task activity for a runtime
   list:      List runtimes in the workspace
-  ping:      Ping a runtime to check connectivity
   update:    Initiate a CLI update on a runtime
   usage:     Get token usage for a runtime
 

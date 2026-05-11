@@ -1,0 +1,17 @@
+Work with issue labels
+
+USAGE
+  multica label <command> [flags]
+
+COMMANDS
+  create:  Create a new label
+  delete:  Delete a label
+  get:     Get label details
+  list:    List labels in the workspace
+  update:  Update a label
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica label <command> --help` for more information about a command.

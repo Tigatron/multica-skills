@@ -1,0 +1,19 @@
+Attach a resource to a project (e.g. --type github_repo --url <url>)
+
+USAGE
+  multica project resource add <project-id> [flags]
+
+FLAGS
+      --default-branch-hint string   Shortcut: optional default branch hint (only used when --type github_repo)
+  -h, --help                         help for add
+      --label string                 Optional human-readable label
+      --output string                Output format: table or json (default "json")
+      --ref string                   Generic JSON resource_ref payload — overrides the per-type shortcuts when set
+      --type string                  Resource type (e.g. github_repo, notion_page — see docs) (default "github_repo")
+      --url string                   Shortcut: the repo URL (only used when --type github_repo)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

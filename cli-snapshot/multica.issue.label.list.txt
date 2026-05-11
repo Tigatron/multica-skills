@@ -1,13 +1,12 @@
-List autopilots in the workspace
+List labels on an issue
 
 USAGE
-  multica autopilot list [flags]
+  multica issue label list <issue-id> [flags]
 
 FLAGS
       --full-id         Show full UUIDs in table output
   -h, --help            help for list
       --output string   Output format: table or json (default "table")
-      --status string   Filter by status (active, paused)
 
 INHERITED FLAGS
   --help   Show help for command

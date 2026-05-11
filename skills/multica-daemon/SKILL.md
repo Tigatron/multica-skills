@@ -1,6 +1,6 @@
 ---
 name: multica-daemon
-description: Run and diagnose the local Multica agent daemon and inspect agent runtimes. Covers daemon start/stop/restart/logs, daemon tuning, profiles, plus the multica runtime commands (list, ping, update, usage, activity) for cross-machine runtime visibility. Use when the user mentions the daemon, a runtime, an agent that is not picking up work, token usage on a runtime, or wants to remotely upgrade a runtime CLI.
+description: Run and diagnose the local Multica agent daemon and inspect agent runtimes. Covers daemon start/stop/restart/logs, daemon tuning, disk-usage reporting, profiles, plus the multica runtime commands (list, update, usage, activity) for cross-machine runtime visibility. Use when the user mentions the daemon, a runtime, an agent that is not picking up work, token usage on a runtime, disk usage under the workspaces root, or wants to remotely upgrade a runtime CLI.
 ---
 
 # Multica Daemon & Runtimes
@@ -16,12 +16,12 @@ Official docs: https://github.com/multica-ai/multica/blob/main/CLI_AND_DAEMON.md
 - User reports an assigned agent is not picking up work.
 - Starting / stopping / restarting the daemon.
 - Tailing daemon logs to debug a stuck task.
-- Tuning poll / heartbeat / concurrency limits.
+- Tuning poll / heartbeat / concurrency / per-task timeouts.
 - Running two daemons side by side via profiles (e.g. prod + staging).
 - Inspecting all runtimes registered in the workspace, not just this machine.
-- Pinging a remote runtime to see if it is alive.
 - Triggering a CLI upgrade on a runtime remotely.
 - Pulling token usage or hourly activity for a runtime.
+- Auditing disk usage under the workspaces root (per-task or per-workspace).
 
 ## Quick health check
 
@@ -63,6 +63,7 @@ All settings can be flags on `daemon start` / `daemon restart` or environment va
 | Poll interval | `--poll-interval` | `MULTICA_DAEMON_POLL_INTERVAL` | `3s` |
 | Heartbeat | `--heartbeat-interval` | `MULTICA_DAEMON_HEARTBEAT_INTERVAL` | `15s` |
 | Agent timeout | `--agent-timeout` | `MULTICA_AGENT_TIMEOUT` | `2h` |
+| Codex semantic inactivity timeout | `--codex-semantic-inactivity-timeout` | `MULTICA_CODEX_SEMANTIC_INACTIVITY_TIMEOUT` | (codex-only) |
 | Max concurrent tasks | `--max-concurrent-tasks` | `MULTICA_DAEMON_MAX_CONCURRENT_TASKS` | `20` |
 | Daemon ID | `--daemon-id` | `MULTICA_DAEMON_ID` | hostname |
 | Device name | `--device-name` | `MULTICA_DAEMON_DEVICE_NAME` | hostname |
@@ -115,11 +116,8 @@ Where `multica daemon` is local-only, `multica runtime` works across every runti
 multica runtime list                                    # Every runtime, with status (table)
 multica runtime list --output json
 
-multica runtime ping <runtime-id>                       # Send a ping; returns immediately
-multica runtime ping <runtime-id> --wait                # Poll until the ping completes
-
-multica runtime update <runtime-id> --target-version 0.2.14   # Initiate CLI upgrade
-multica runtime update <runtime-id> --target-version 0.2.14 --wait
+multica runtime update <runtime-id> --target-version 0.2.29   # Initiate CLI upgrade
+multica runtime update <runtime-id> --target-version 0.2.29 --wait
 
 multica runtime usage    <runtime-id>                   # Token usage, last 90 days
 multica runtime usage    <runtime-id> --days 30         # Custom window (max 365)
@@ -127,10 +125,21 @@ multica runtime activity <runtime-id>                   # Hourly task activity
 ```
 
 Use cases:
-- Diagnosing which runtimes can host a given agent before assigning work.
-- Checking whether a remote teammate's runtime is up before paging them.
+- Diagnosing which runtimes can host a given agent before assigning work — use `runtime list` and check the status column.
 - Bumping every runtime to a new CLI version after a release.
 - Pulling token consumption for a specific runtime over a billing window.
+
+## Disk usage on the daemon host
+
+```bash
+multica daemon disk-usage                                # Per-task view, sorted by size desc
+multica daemon disk-usage --by-workspace                 # Aggregate per workspace
+multica daemon disk-usage --top 20                       # Keep only the 20 largest entries
+multica daemon disk-usage --output json
+multica daemon disk-usage --workspaces-root /custom/path # Override the workspaces root
+```
+
+Reports total bytes plus the artifact-cleanable subset (`node_modules`, `.next`, `.turbo` by default — overridable with `MULTICA_GC_ARTIFACT_PATTERNS`). Skips `.git` and never follows symlinks. The daemon does not need to be running.
 
 ## `multica repo checkout`
 
@@ -147,11 +156,12 @@ Walk this checklist in order — each step rules out a layer:
 1. `multica auth status` — token valid?
 2. `multica daemon status` — daemon running on the agent's runtime host? Note its PID.
 3. `multica daemon status --output json` — is the agent's provider detected on this machine?
-4. `multica runtime ping <runtime-id> --wait` — is the runtime answering?
-5. `multica agent get <id> --output json` — agent active (not archived) and pointing at the expected runtime?
-6. `multica issue get <id> --output json | jq '{status, assignee_id}'` — correctly assigned?
-7. `multica issue runs <id>` — any attempted runs? Inspect with `multica issue run-messages`.
-8. `multica daemon logs -n 200` — any errors around the time the issue was created?
+4. `multica runtime list --output json` — does the workspace see the agent's runtime, and is its status field active/ready (not stale)?
+5. `multica runtime activity <runtime-id>` — recent task activity, or has the runtime been silent?
+6. `multica agent get <id> --output json` — agent active (not archived) and pointing at the expected runtime?
+7. `multica issue get <id> --output json | jq '{status, assignee_id}'` — correctly assigned?
+8. `multica issue runs <id>` — any attempted runs? Inspect with `multica issue run-messages`.
+9. `multica daemon logs -n 200` — any errors around the time the issue was created?
 
 One of those steps will show the break. If all pass and work still stalls, the daemon may have hit `--max-concurrent-tasks`; bump it (or the agent's `--max-concurrent-tasks`) and `multica daemon restart`.
 

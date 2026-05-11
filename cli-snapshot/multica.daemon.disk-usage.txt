@@ -1,0 +1,24 @@
+Walks the daemon's workspaces root and reports per-task or per-workspace disk usage.
+Default view is per-task, sorted by size descending. --by-workspace switches to a per-workspace summary;
+--top N keeps only the largest N entries.
+
+Bytes are split into total and the artifact-cleanable subset (node_modules, .next, .turbo by default,
+overridable via MULTICA_GC_ARTIFACT_PATTERNS) so the report stays in sync with what the GC reclaims.
+The walk skips .git and never follows symlinks. The daemon does not need to be running.
+
+USAGE
+  multica daemon disk-usage [flags]
+
+FLAGS
+      --by-task                  Per-task view (default; mutually exclusive with --by-workspace)
+      --by-workspace             Aggregate output by workspace instead of by task
+  -h, --help                     help for disk-usage
+      --output string            Output format: table or json (default "table")
+      --top int                  Keep only the largest N entries (across all workspaces)
+      --workspaces-root string   Override the workspaces root path (default: same as the daemon)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.
