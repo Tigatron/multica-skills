@@ -1,0 +1,21 @@
+Create a new autopilot
+
+USAGE
+  multica autopilot create [flags]
+
+FLAGS
+      --agent string                  Assignee agent (name or ID) — required
+      --description string            Autopilot description (used as task prompt)
+  -h, --help                          help for create
+      --issue-title-template string   Template for issue titles (create_issue mode)
+      --mode string                   Execution mode: create_issue (required). run_only is not yet supported end-to-end.
+      --output string                 Output format: table or json (default "json")
+      --priority string               Priority for created issues (none, low, medium, high, urgent) (default "none")
+      --project string                Project ID (optional)
+      --title string                  Autopilot title (required)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

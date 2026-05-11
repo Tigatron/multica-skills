@@ -1,0 +1,15 @@
+List messages for an execution
+
+USAGE
+  multica issue run-messages <task-id> [flags]
+
+FLAGS
+  -h, --help            help for run-messages
+      --output string   Output format: table or json (default "json")
+      --since int       Only return messages after this sequence number
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

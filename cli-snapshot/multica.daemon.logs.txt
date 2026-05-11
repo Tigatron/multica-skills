@@ -1,0 +1,15 @@
+Show daemon logs
+
+USAGE
+  multica daemon logs [flags]
+
+FLAGS
+  -f, --follow      Follow log output
+  -h, --help        help for logs
+  -n, --lines int   Number of lines to show (default 50)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

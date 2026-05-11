@@ -1,0 +1,18 @@
+Add a comment to an issue
+
+USAGE
+  multica issue comment add <issue-id> [flags]
+
+FLAGS
+      --attachment strings   File path(s) to attach (can be specified multiple times)
+      --content string       Comment content (required unless --content-stdin)
+      --content-stdin        Read comment content from stdin (avoids shell escaping issues)
+  -h, --help                 help for add
+      --output string        Output format: table or json (default "json")
+      --parent string        Parent comment ID (reply to a specific comment)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

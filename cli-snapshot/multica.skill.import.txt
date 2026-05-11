@@ -1,0 +1,15 @@
+Import a skill from a URL (clawhub.ai or skills.sh)
+
+USAGE
+  multica skill import [flags]
+
+FLAGS
+  -h, --help            help for import
+      --output string   Output format: table or json (default "json")
+      --url string      URL to import from (required)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

@@ -1,0 +1,13 @@
+Creates a git worktree from the daemon's bare clone cache. Used by agents to check out repos on demand.
+
+USAGE
+  multica repo checkout <url> [flags]
+
+FLAGS
+  -h, --help   help for checkout
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

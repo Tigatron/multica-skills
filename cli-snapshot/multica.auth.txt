@@ -1,0 +1,14 @@
+Authenticate multica with Multica
+
+USAGE
+  multica auth <command> [flags]
+
+COMMANDS
+  logout:  Remove stored authentication token
+  status:  Show current authentication status
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica auth <command> --help` for more information about a command.

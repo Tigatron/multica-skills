@@ -1,0 +1,17 @@
+List comments on an issue
+
+USAGE
+  multica issue comment list <issue-id> [flags]
+
+FLAGS
+  -h, --help            help for list
+      --limit int       Maximum number of comments to return (0 = all)
+      --offset int      Number of comments to skip
+      --output string   Output format: table or json (default "table")
+      --since string    Only return comments created after this timestamp (RFC3339)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

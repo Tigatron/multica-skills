@@ -1,0 +1,14 @@
+Get project details
+
+USAGE
+  multica project get <id> [flags]
+
+FLAGS
+  -h, --help            help for get
+      --output string   Output format: table or json (default "json")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

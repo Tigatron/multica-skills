@@ -1,0 +1,46 @@
+Work seamlessly with Multica from the command line.
+
+USAGE
+  multica <command> <subcommand> [flags]
+
+CORE COMMANDS
+  agent:      Work with agents
+  autopilot:  Manage autopilots (scheduled/triggered agent automations)
+  issue:      Work with issues
+  project:    Work with projects
+  repo:       Work with repositories
+  skill:      Work with skills
+  workspace:  Work with workspaces
+
+RUNTIME COMMANDS
+  daemon:   Control the local agent runtime daemon
+  runtime:  Work with agent runtimes
+
+ADDITIONAL COMMANDS
+  attachment:  Work with attachments
+  auth:        Authenticate multica with Multica
+  config:      Manage configuration for multica
+  login:       Authenticate and set up workspaces
+  setup:       Configure the CLI, authenticate, and start the daemon
+  update:      Update multica to the latest version
+  version:     Print version information
+
+FLAGS
+  -h, --help                  help for multica
+      --profile string        Configuration profile name (e.g. dev) — isolates config, daemon state, and workspaces
+      --server-url string     Multica server URL (env: MULTICA_SERVER_URL)
+  -v, --version               version for multica
+      --workspace-id string   Workspace ID (env: MULTICA_WORKSPACE_ID)
+
+EXAMPLES
+  $ multica login
+  $ multica issue list --output json
+  $ multica daemon start
+  $ multica agent list --output json
+
+ENVIRONMENT VARIABLES
+  MULTICA_SERVER_URL    Override the default server URL
+  MULTICA_WORKSPACE_ID  Set the active workspace
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

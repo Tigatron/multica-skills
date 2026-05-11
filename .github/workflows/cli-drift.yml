@@ -1,0 +1,150 @@
+name: cli-drift
+
+# Audit the multica CLI surface against our committed snapshot and open a PR
+# when the help tree has moved. The PR ships only the snapshot diff — a human
+# reviewer updates the affected SKILL.md files. Gotchas / Common flows /
+# description frontmatter are explicitly out of scope for this automation
+# (they're the part of each skill that --help cannot replace).
+
+on:
+  schedule:
+    # Daily ~04:17 UTC, off the top of the hour to avoid Actions rush minutes.
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Snapshot and print the report without pushing or opening a PR'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install multica CLI
+        run: |
+          set -euo pipefail
+          curl -fsSL https://raw.githubusercontent.com/multica-ai/multica/main/scripts/install.sh | bash
+          # The install script may drop the binary in any of these locations.
+          for d in /usr/local/bin "$HOME/.local/bin" "$HOME/.multica/bin"; do
+            if [ -x "$d/multica" ]; then
+              echo "$d" >> "$GITHUB_PATH"
+              break
+            fi
+          done
+
+      - name: Show installed version
+        run: multica --version
+
+      - name: Snapshot CLI --help tree
+        run: bash bin/snapshot-cli.sh cli-snapshot
+
+      - name: Detect drift
+        id: drift
+        run: |
+          set -euo pipefail
+          # Extract a clean semver-ish token (e.g. "0.2.14") from the version line.
+          VERSION=$(awk 'NR==1 {
+            for (i = 1; i <= NF; i++) if ($i ~ /^[0-9]+\.[0-9]+/) { print $i; exit }
+          }' cli-snapshot/_version.txt)
+          [ -z "$VERSION" ] && VERSION="unknown-$(date -u +%Y%m%dT%H%M%SZ)"
+          # Branch names should not contain shell-unfriendly characters.
+          VERSION=$(printf '%s' "$VERSION" | tr -c 'a-zA-Z0-9._-' '_')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          # Untracked files in cli-snapshot/ don't show in `git diff`, so use status.
+          if [ -z "$(git status --porcelain cli-snapshot)" ]; then
+            echo "drifted=false" >> "$GITHUB_OUTPUT"
+            echo "No drift; working tree matches main."
+          else
+            echo "drifted=true" >> "$GITHUB_OUTPUT"
+            echo "Drift detected — proceeding to PR."
+          fi
+
+      - name: Commit snapshot to feature branch
+        if: steps.drift.outputs.drifted == 'true'
+        env:
+          VERSION: ${{ steps.drift.outputs.version }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="sync/cli-${VERSION}"
+
+          # Preserve any reviewer edits already pushed to this branch by
+          # checking it out and reapplying our fresh snapshot on top.
+          tar -cf /tmp/snap.tar cli-snapshot
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH:$BRANCH"
+            git checkout "$BRANCH"
+            rm -rf cli-snapshot
+          else
+            git checkout -b "$BRANCH"
+            rm -rf cli-snapshot
+          fi
+          tar -xf /tmp/snap.tar
+
+          git add -A cli-snapshot
+          if git diff --cached --quiet -- cli-snapshot; then
+            echo "Branch already matches the fresh snapshot; no commit needed."
+          else
+            git commit -m "Snapshot multica CLI ${VERSION} --help tree"
+          fi
+
+      - name: Push branch
+        if: steps.drift.outputs.drifted == 'true' && inputs.dry-run != true
+        env:
+          VERSION: ${{ steps.drift.outputs.version }}
+        run: git push origin "sync/cli-${VERSION}"
+
+      - name: Generate PR body
+        if: steps.drift.outputs.drifted == 'true'
+        run: |
+          set -euo pipefail
+          bash bin/drift-pr-body.sh origin/main > /tmp/pr-body.md
+          echo '--- PR body preview ---'
+          head -120 /tmp/pr-body.md
+          echo '--- end preview ---'
+
+      - name: Open or update PR
+        if: steps.drift.outputs.drifted == 'true' && inputs.dry-run != true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.drift.outputs.version }}
+        run: |
+          set -euo pipefail
+          BRANCH="sync/cli-${VERSION}"
+
+          PR_NUM=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || true)
+          if [ -n "$PR_NUM" ]; then
+            gh pr edit "$PR_NUM" --body-file /tmp/pr-body.md
+            echo "Updated PR #$PR_NUM"
+          else
+            gh pr create \
+              --title "Sync skills with multica CLI ${VERSION}" \
+              --body-file /tmp/pr-body.md \
+              --label "cli-drift" \
+              --label "needs-review" \
+              --base main \
+              --head "$BRANCH"
+          fi
+
+      - name: Dry-run summary
+        if: steps.drift.outputs.drifted == 'true' && inputs.dry-run == true
+        run: |
+          echo "Dry-run: would have pushed sync/cli-${{ steps.drift.outputs.version }} and opened a PR."
+          echo
+          cat /tmp/pr-body.md

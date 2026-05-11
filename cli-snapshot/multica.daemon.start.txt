@@ -1,0 +1,22 @@
+Start the daemon process that polls for tasks and executes them using local agent CLIs (Claude, Codex).
+Runs in the background by default. Use --foreground to run in the current terminal.
+
+USAGE
+  multica daemon start [flags]
+
+FLAGS
+      --agent-timeout duration        Per-task timeout (env: MULTICA_AGENT_TIMEOUT)
+      --daemon-id string              Unique daemon identifier (env: MULTICA_DAEMON_ID)
+      --device-name string            Human-readable device name (env: MULTICA_DAEMON_DEVICE_NAME)
+      --foreground                    Run in the foreground instead of background
+      --heartbeat-interval duration   Heartbeat interval (env: MULTICA_DAEMON_HEARTBEAT_INTERVAL)
+  -h, --help                          help for start
+      --max-concurrent-tasks int      Max tasks running in parallel (env: MULTICA_DAEMON_MAX_CONCURRENT_TASKS)
+      --poll-interval duration        Task poll interval (env: MULTICA_DAEMON_POLL_INTERVAL)
+      --runtime-name string           Runtime display name (env: MULTICA_AGENT_RUNTIME_NAME)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

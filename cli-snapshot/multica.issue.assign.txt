@@ -1,0 +1,16 @@
+Assign an issue to a member or agent
+
+USAGE
+  multica issue assign <id> [flags]
+
+FLAGS
+  -h, --help            help for assign
+      --output string   Output format: table or json (default "json")
+      --to string       Assignee name (member or agent)
+      --unassign        Remove current assignee
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

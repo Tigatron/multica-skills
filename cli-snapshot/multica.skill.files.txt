@@ -1,0 +1,15 @@
+Work with skill files
+
+USAGE
+  multica skill files <command> [flags]
+
+COMMANDS
+  delete:  Delete a skill file
+  list:    List files for a skill
+  upsert:  Create or update a skill file
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica skill files <command> --help` for more information about a command.

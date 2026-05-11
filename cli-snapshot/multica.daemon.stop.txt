@@ -1,0 +1,13 @@
+Stop the running daemon
+
+USAGE
+  multica daemon stop [flags]
+
+FLAGS
+  -h, --help   help for stop
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

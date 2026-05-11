@@ -1,0 +1,24 @@
+Update an agent
+
+USAGE
+  multica agent update <id> [flags]
+
+FLAGS
+      --custom-args string           New custom CLI arguments as JSON array. For model selection prefer --model; some providers (codex app-server, openclaw) reject --model in custom_args.
+      --description string           New description
+  -h, --help                         help for update
+      --instructions string          New instructions
+      --max-concurrent-tasks int32   New max concurrent tasks
+      --model string                 New model identifier. Pass an empty string to clear and fall back to the runtime default.
+      --name string                  New name
+      --output string                Output format: table or json (default "json")
+      --runtime-config string        New runtime config as JSON string
+      --runtime-id string            New runtime ID
+      --status string                New status
+      --visibility string            New visibility: private or workspace
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

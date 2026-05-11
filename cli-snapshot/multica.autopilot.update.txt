@@ -1,0 +1,22 @@
+Update an autopilot
+
+USAGE
+  multica autopilot update <id> [flags]
+
+FLAGS
+      --agent string                  New assignee agent (name or ID)
+      --description string            New description
+  -h, --help                          help for update
+      --issue-title-template string   New issue title template
+      --mode string                   New execution mode (create_issue)
+      --output string                 Output format: table or json (default "json")
+      --priority string               New priority
+      --project string                New project ID (use empty string to clear)
+      --status string                 New status (active, paused)
+      --title string                  New title
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

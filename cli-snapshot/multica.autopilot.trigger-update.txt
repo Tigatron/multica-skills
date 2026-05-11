@@ -1,0 +1,18 @@
+Update an existing trigger
+
+USAGE
+  multica autopilot trigger-update <autopilot-id> <trigger-id> [flags]
+
+FLAGS
+      --cron string       New cron expression
+      --enabled           Enable or disable the trigger (default true)
+  -h, --help              help for trigger-update
+      --label string      New label
+      --output string     Output format: table or json (default "json")
+      --timezone string   New IANA timezone
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

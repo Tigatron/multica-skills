@@ -1,0 +1,17 @@
+Add a schedule trigger to an autopilot
+
+USAGE
+  multica autopilot trigger-add <autopilot-id> [flags]
+
+FLAGS
+      --cron string       Cron expression (required)
+  -h, --help              help for trigger-add
+      --label string      Optional human-readable label
+      --output string     Output format: table or json (default "json")
+      --timezone string   IANA timezone (default UTC)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

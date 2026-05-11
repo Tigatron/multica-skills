@@ -1,0 +1,15 @@
+Set skills for an agent (replaces all current assignments)
+
+USAGE
+  multica agent skills set <agent-id> [flags]
+
+FLAGS
+  -h, --help                help for set
+      --output string       Output format: table or json (default "json")
+      --skill-ids strings   Skill IDs to assign (comma-separated)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

@@ -1,0 +1,13 @@
+Show current authentication status
+
+USAGE
+  multica auth status [flags]
+
+FLAGS
+  -h, --help   help for status
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

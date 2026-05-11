@@ -1,0 +1,14 @@
+Log in to Multica, then automatically discover and watch all your workspaces.
+
+USAGE
+  multica login [flags]
+
+FLAGS
+  -h, --help    help for login
+      --token   Authenticate by pasting a personal access token
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

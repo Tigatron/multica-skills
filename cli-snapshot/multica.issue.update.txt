@@ -1,0 +1,22 @@
+Update an issue
+
+USAGE
+  multica issue update <id> [flags]
+
+FLAGS
+      --assignee string      New assignee name (member or agent)
+      --description string   New description
+      --due-date string      New due date (RFC3339 format)
+  -h, --help                 help for update
+      --output string        Output format: table or json (default "json")
+      --parent string        Parent issue ID (use --parent "" to clear)
+      --priority string      New priority
+      --project string       Project ID
+      --status string        New status
+      --title string         New title
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

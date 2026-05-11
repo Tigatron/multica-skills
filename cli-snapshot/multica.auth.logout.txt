@@ -1,0 +1,13 @@
+Remove stored authentication token
+
+USAGE
+  multica auth logout [flags]
+
+FLAGS
+  -h, --help   help for logout
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

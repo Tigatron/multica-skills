@@ -1,0 +1,16 @@
+Create or update a skill file
+
+USAGE
+  multica skill files upsert <skill-id> [flags]
+
+FLAGS
+      --content string   File content (required)
+  -h, --help             help for upsert
+      --output string    Output format: table or json (default "json")
+      --path string      File path within the skill (required)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

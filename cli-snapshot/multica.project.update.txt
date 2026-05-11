@@ -1,0 +1,19 @@
+Update a project
+
+USAGE
+  multica project update <id> [flags]
+
+FLAGS
+      --description string   New description
+  -h, --help                 help for update
+      --icon string          New icon (emoji)
+      --lead string          New lead name (member or agent)
+      --output string        Output format: table or json (default "json")
+      --status string        New status
+      --title string         New title
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

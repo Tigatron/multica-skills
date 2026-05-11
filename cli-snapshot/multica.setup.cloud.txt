@@ -1,0 +1,15 @@
+Explicitly configures the CLI to connect to Multica Cloud (multica.ai).
+
+This is equivalent to running 'multica setup' without a subcommand.
+
+USAGE
+  multica setup cloud [flags]
+
+FLAGS
+  -h, --help   help for cloud
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

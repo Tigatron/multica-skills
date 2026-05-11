@@ -1,0 +1,16 @@
+List execution history for an autopilot
+
+USAGE
+  multica autopilot runs <id> [flags]
+
+FLAGS
+  -h, --help            help for runs
+      --limit int       Max number of runs to return (default 20)
+      --offset int      Pagination offset
+      --output string   Output format: table or json (default "table")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

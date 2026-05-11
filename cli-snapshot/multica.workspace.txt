@@ -1,0 +1,15 @@
+Work with workspaces
+
+USAGE
+  multica workspace <command> [flags]
+
+COMMANDS
+  get:      Get workspace details
+  list:     List all workspaces you belong to
+  members:  List workspace members
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica workspace <command> --help` for more information about a command.

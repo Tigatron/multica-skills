@@ -1,0 +1,15 @@
+Ping a runtime to check connectivity
+
+USAGE
+  multica runtime ping <runtime-id> [flags]
+
+FLAGS
+  -h, --help            help for ping
+      --output string   Output format: table or json (default "json")
+      --wait            Wait for ping to complete (poll until done)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

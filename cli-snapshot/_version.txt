@@ -1,0 +1,2 @@
+multica 0.2.14 (commit: 2d0916ee, built: 2026-04-22T09:34:07Z)
+go: go1.26.1, os/arch: darwin/arm64

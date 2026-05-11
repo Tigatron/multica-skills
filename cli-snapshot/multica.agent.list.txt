@@ -1,0 +1,15 @@
+List agents in the workspace
+
+USAGE
+  multica agent list [flags]
+
+FLAGS
+  -h, --help               help for list
+      --include-archived   Include archived agents
+      --output string      Output format: table or json (default "table")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

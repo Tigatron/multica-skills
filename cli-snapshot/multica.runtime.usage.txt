@@ -1,0 +1,15 @@
+Get token usage for a runtime
+
+USAGE
+  multica runtime usage <runtime-id> [flags]
+
+FLAGS
+      --days int        Number of days of usage data to retrieve (max 365) (default 90)
+  -h, --help            help for usage
+      --output string   Output format: table or json (default "table")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

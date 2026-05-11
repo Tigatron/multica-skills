@@ -1,0 +1,17 @@
+Work with agent runtimes
+
+USAGE
+  multica runtime <command> [flags]
+
+COMMANDS
+  activity:  Get hourly task activity for a runtime
+  list:      List runtimes in the workspace
+  ping:      Ping a runtime to check connectivity
+  update:    Initiate a CLI update on a runtime
+  usage:     Get token usage for a runtime
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica runtime <command> --help` for more information about a command.

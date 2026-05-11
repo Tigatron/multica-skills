@@ -1,0 +1,14 @@
+Get hourly task activity for a runtime
+
+USAGE
+  multica runtime activity <runtime-id> [flags]
+
+FLAGS
+  -h, --help            help for activity
+      --output string   Output format: table or json (default "table")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

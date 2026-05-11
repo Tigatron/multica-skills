@@ -1,0 +1,14 @@
+List files for a skill
+
+USAGE
+  multica skill files list <skill-id> [flags]
+
+FLAGS
+  -h, --help            help for list
+      --output string   Output format: table or json (default "table")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

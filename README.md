@@ -89,9 +89,39 @@ The agent should invoke the `multica` CLI directly, with behavior informed by th
 - **Commands are verbatim** — every command shown is what the skill expects an agent to actually run, with the real flags and positional forms from the Multica CLI docs.
 - **Gotchas sections** capture failure modes — wrong timezone strings, missing assignees, silent no-runtime, etc.
 
+## Keeping in sync with the CLI
+
+The Multica CLI moves faster than its docs. To stop skills from drifting, the source of truth here is the **CLI binary itself**, not [CLI_AND_DAEMON.md](https://github.com/multica-ai/multica/blob/main/CLI_AND_DAEMON.md).
+
+Layout:
+
+- `cli-snapshot/` — one file per `multica <path> --help` node, committed.
+- `bin/snapshot-cli.sh` — regenerates the snapshot from the locally installed CLI.
+- `bin/drift-pr-body.sh` — formats a structured drift report from `git diff` of the snapshot.
+- `.github/workflows/cli-drift.yml` — runs daily, opens a PR on `sync/cli-<version>` when the snapshot has moved.
+
+Each drift PR ships only the new snapshot. Updating the affected `SKILL.md` is a **manual** review step, and that's deliberate:
+
+| What the auto-PR touches | What stays human-only |
+|---|---|
+| `cli-snapshot/*.txt` | `Gotchas` (must be reproduced before adding) |
+|  | `Common flows` (cross-command workflows) |
+|  | `description:` frontmatter (agent routing predicates) |
+
+If you only ever re-emit `--help`, the skills degrade to a `--help` reformatter. The differentiator is the hand-on knowledge layered on top, so the workflow is explicitly not allowed to touch it.
+
+To run the audit locally:
+
+```bash
+bash bin/snapshot-cli.sh cli-snapshot      # regenerates cli-snapshot/
+git diff cli-snapshot                      # see what moved
+```
+
+To dry-run the action (no push, no PR), trigger `cli-drift` from the Actions tab with `dry-run: true`.
+
 ## Contributing
 
-PRs welcome. The skill content is hand-written against the [Multica CLI and Daemon Guide](https://github.com/multica-ai/multica/blob/main/CLI_AND_DAEMON.md) — when that doc changes, these skills should follow.
+PRs welcome. To add a new skill, follow the template used by the existing seven, or run `npx skills init <name>` and adapt.
 
 Local sanity check (no install required):
 
@@ -101,8 +131,6 @@ for f in skills/*/SKILL.md; do
   grep -c '^multica ' "$f" || true   # command count
 done
 ```
-
-To add a new skill, follow the template used by the existing six, or run `npx skills init <name>` and adapt.
 
 ## License
 

@@ -1,0 +1,23 @@
+Create a new agent
+
+USAGE
+  multica agent create [flags]
+
+FLAGS
+      --custom-args string           Custom CLI arguments as JSON array. For model selection prefer --model; some providers (codex app-server, openclaw) reject --model in custom_args.
+      --description string           Agent description
+  -h, --help                         help for create
+      --instructions string          Agent instructions
+      --max-concurrent-tasks int32   Maximum concurrent tasks (default 6)
+      --model string                 Model identifier (e.g. claude-sonnet-4-6, openai/gpt-4o). Prefer this over passing --model in --custom-args.
+      --name string                  Agent name (required)
+      --output string                Output format: table or json (default "json")
+      --runtime-config string        Runtime config as JSON string
+      --runtime-id string            Runtime ID (required)
+      --visibility string            Visibility: private or workspace (default "private")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

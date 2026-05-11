@@ -1,0 +1,22 @@
+Manage autopilots (scheduled/triggered agent automations)
+
+USAGE
+  multica autopilot <command> [flags]
+
+COMMANDS
+  create:          Create a new autopilot
+  delete:          Delete an autopilot
+  get:             Get autopilot details (includes triggers)
+  list:            List autopilots in the workspace
+  runs:            List execution history for an autopilot
+  trigger:         Manually trigger an autopilot to run once
+  trigger-add:     Add a schedule trigger to an autopilot
+  trigger-delete:  Delete a trigger
+  trigger-update:  Update an existing trigger
+  update:          Update an autopilot
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica autopilot <command> --help` for more information about a command.

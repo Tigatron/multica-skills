@@ -1,0 +1,14 @@
+Manage configuration for multica
+
+USAGE
+  multica config <command> [flags]
+
+COMMANDS
+  set:   Set a CLI configuration value
+  show:  Show current CLI configuration
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica config <command> --help` for more information about a command.

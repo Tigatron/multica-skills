@@ -1,0 +1,14 @@
+Manage agent skill assignments
+
+USAGE
+  multica agent skills <command> [flags]
+
+COMMANDS
+  list:  List skills assigned to an agent
+  set:   Set skills for an agent (replaces all current assignments)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica agent skills <command> --help` for more information about a command.

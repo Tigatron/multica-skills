@@ -1,0 +1,14 @@
+Print version information
+
+USAGE
+  multica version [flags]
+
+FLAGS
+  -h, --help            help for version
+      --output string   Output format: text or json (default "text")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

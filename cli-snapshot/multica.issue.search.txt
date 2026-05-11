@@ -1,0 +1,16 @@
+Search issues by title or description
+
+USAGE
+  multica issue search <query> [flags]
+
+FLAGS
+  -h, --help             help for search
+      --include-closed   Include done and cancelled issues
+      --limit int        Maximum number of results to return (default 20)
+      --output string    Output format: table or json (default "table")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

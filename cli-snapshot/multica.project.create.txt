@@ -1,0 +1,19 @@
+Create a new project
+
+USAGE
+  multica project create [flags]
+
+FLAGS
+      --description string   Project description
+  -h, --help                 help for create
+      --icon string          Project icon (emoji)
+      --lead string          Lead name (member or agent)
+      --output string        Output format: table or json (default "json")
+      --status string        Project status
+      --title string         Project title (required)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

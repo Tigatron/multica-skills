@@ -1,0 +1,21 @@
+Download an attachment by its ID to a local file.
+
+USAGE
+  multica attachment download <attachment-id> [flags]
+
+FLAGS
+  -h, --help                help for download
+  -o, --output-dir string   Directory to save the downloaded file (default ".")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+EXAMPLES
+  # Download an image attachment to the current directory
+  $ multica attachment download abc123
+
+  # Download to a specific directory
+  $ multica attachment download abc123 -o /tmp/images
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

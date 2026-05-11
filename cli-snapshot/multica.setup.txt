@@ -1,0 +1,14 @@
+Configure the CLI, authenticate, and start the daemon
+
+USAGE
+  multica setup <command> [flags]
+
+COMMANDS
+  cloud:      Configure the CLI for Multica Cloud (multica.ai)
+  self-host:  Configure the CLI for a self-hosted Multica server
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica setup <command> --help` for more information about a command.

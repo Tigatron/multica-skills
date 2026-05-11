@@ -1,0 +1,15 @@
+Work with issue subscribers
+
+USAGE
+  multica issue subscriber <command> [flags]
+
+COMMANDS
+  add:     Subscribe a user or agent to an issue (defaults to the caller)
+  list:    List subscribers of an issue
+  remove:  Unsubscribe a user or agent from an issue (defaults to the caller)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica issue subscriber <command> --help` for more information about a command.
