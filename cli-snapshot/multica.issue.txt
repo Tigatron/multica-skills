@@ -8,6 +8,7 @@ COMMANDS
   comment:       Work with issue comments
   create:        Create a new issue
   get:           Get issue details
+  label:         Manage labels on an issue
   list:          List issues in the workspace
   rerun:         Re-enqueue an issue's current agent assignment as a fresh task
   run-messages:  List messages for an execution

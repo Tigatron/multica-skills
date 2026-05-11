@@ -4,9 +4,10 @@ USAGE
   multica issue subscriber add <issue-id> [flags]
 
 FLAGS
-  -h, --help            help for add
-      --output string   Output format: table or json (default "json")
-      --user string     Member or agent name to subscribe (defaults to the caller)
+  -h, --help             help for add
+      --output string    Output format: table or json (default "json")
+      --user string      Member or agent name to subscribe (fuzzy match; defaults to the caller)
+      --user-id string   Member or agent UUID to subscribe (mutually exclusive with --user)
 
 INHERITED FLAGS
   --help   Show help for command

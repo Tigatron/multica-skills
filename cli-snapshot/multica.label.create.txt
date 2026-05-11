@@ -1,12 +1,13 @@
-Ping a runtime to check connectivity
+Create a new label
 
 USAGE
-  multica runtime ping <runtime-id> [flags]
+  multica label create [flags]
 
 FLAGS
-  -h, --help            help for ping
+      --color string    Hex color like #3b82f6 (required)
+  -h, --help            help for create
+      --name string     Label name (required)
       --output string   Output format: table or json (default "json")
-      --wait            Wait for ping to complete (poll until done)
 
 INHERITED FLAGS
   --help   Show help for command

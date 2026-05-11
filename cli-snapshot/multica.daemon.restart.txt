@@ -4,15 +4,16 @@ USAGE
   multica daemon restart [flags]
 
 FLAGS
-      --agent-timeout duration        Per-task timeout (env: MULTICA_AGENT_TIMEOUT)
-      --daemon-id string              Unique daemon identifier (env: MULTICA_DAEMON_ID)
-      --device-name string            Human-readable device name (env: MULTICA_DAEMON_DEVICE_NAME)
-      --foreground                    Run in the foreground instead of background
-      --heartbeat-interval duration   Heartbeat interval (env: MULTICA_DAEMON_HEARTBEAT_INTERVAL)
-  -h, --help                          help for restart
-      --max-concurrent-tasks int      Max tasks running in parallel (env: MULTICA_DAEMON_MAX_CONCURRENT_TASKS)
-      --poll-interval duration        Task poll interval (env: MULTICA_DAEMON_POLL_INTERVAL)
-      --runtime-name string           Runtime display name (env: MULTICA_AGENT_RUNTIME_NAME)
+      --agent-timeout duration                       Per-task timeout (env: MULTICA_AGENT_TIMEOUT)
+      --codex-semantic-inactivity-timeout duration   Codex semantic inactivity timeout (env: MULTICA_CODEX_SEMANTIC_INACTIVITY_TIMEOUT)
+      --daemon-id string                             Unique daemon identifier (env: MULTICA_DAEMON_ID)
+      --device-name string                           Human-readable device name (env: MULTICA_DAEMON_DEVICE_NAME)
+      --foreground                                   Run in the foreground instead of background
+      --heartbeat-interval duration                  Heartbeat interval (env: MULTICA_DAEMON_HEARTBEAT_INTERVAL)
+  -h, --help                                         help for restart
+      --max-concurrent-tasks int                     Max tasks running in parallel (env: MULTICA_DAEMON_MAX_CONCURRENT_TASKS)
+      --poll-interval duration                       Task poll interval (env: MULTICA_DAEMON_POLL_INTERVAL)
+      --runtime-name string                          Runtime display name (env: MULTICA_AGENT_RUNTIME_NAME)
 
 INHERITED FLAGS
   --help   Show help for command

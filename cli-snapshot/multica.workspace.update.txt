@@ -1,0 +1,20 @@
+Update workspace metadata (admin/owner only)
+
+USAGE
+  multica workspace update [workspace-id] [flags]
+
+FLAGS
+      --context string        New workspace context (decodes \n, \r, \t, \\; pipe via --context-stdin to preserve literal backslashes)
+      --context-stdin         Read context from stdin (preserves multi-line content verbatim)
+      --description string    New description (decodes \n, \r, \t, \\; pipe via --description-stdin to preserve literal backslashes)
+      --description-stdin     Read description from stdin (preserves multi-line content verbatim)
+  -h, --help                  help for update
+      --issue-prefix string   New issue prefix (uppercased server-side)
+      --name string           New workspace name
+      --output string         Output format: table or json (default "json")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

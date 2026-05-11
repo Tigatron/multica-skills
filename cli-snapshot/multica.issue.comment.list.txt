@@ -5,8 +5,6 @@ USAGE
 
 FLAGS
   -h, --help            help for list
-      --limit int       Maximum number of comments to return (0 = all)
-      --offset int      Number of comments to skip
       --output string   Output format: table or json (default "table")
       --since string    Only return comments created after this timestamp (RFC3339)
 

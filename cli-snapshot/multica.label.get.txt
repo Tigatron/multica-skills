@@ -1,12 +1,11 @@
-Import a skill from a URL (clawhub.ai, skills.sh, or github.com)
+Get label details
 
 USAGE
-  multica skill import [flags]
+  multica label get <id> [flags]
 
 FLAGS
-  -h, --help            help for import
+  -h, --help            help for get
       --output string   Output format: table or json (default "json")
-      --url string      URL to import from (required)
 
 INHERITED FLAGS
   --help   Show help for command

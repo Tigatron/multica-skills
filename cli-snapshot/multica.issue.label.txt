@@ -1,0 +1,15 @@
+Manage labels on an issue
+
+USAGE
+  multica issue label <command> [flags]
+
+COMMANDS
+  add:     Attach a label to an issue
+  list:    List labels on an issue
+  remove:  Remove a label from an issue
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica issue label <command> --help` for more information about a command.

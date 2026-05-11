@@ -4,7 +4,8 @@ USAGE
   multica repo checkout <url> [flags]
 
 FLAGS
-  -h, --help   help for checkout
+  -h, --help         help for checkout
+      --ref string   branch, tag, or commit to check out instead of the remote default branch
 
 INHERITED FLAGS
   --help   Show help for command

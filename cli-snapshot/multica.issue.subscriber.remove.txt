@@ -4,9 +4,10 @@ USAGE
   multica issue subscriber remove <issue-id> [flags]
 
 FLAGS
-  -h, --help            help for remove
-      --output string   Output format: table or json (default "json")
-      --user string     Member or agent name to unsubscribe (defaults to the caller)
+  -h, --help             help for remove
+      --output string    Output format: table or json (default "json")
+      --user string      Member or agent name to unsubscribe (fuzzy match; defaults to the caller)
+      --user-id string   Member or agent UUID to unsubscribe (mutually exclusive with --user)
 
 INHERITED FLAGS
   --help   Show help for command

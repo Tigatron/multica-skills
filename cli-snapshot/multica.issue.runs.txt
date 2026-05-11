@@ -4,6 +4,7 @@ USAGE
   multica issue runs <issue-id> [flags]
 
 FLAGS
+      --full-id         Show full task UUIDs in table output
   -h, --help            help for runs
       --output string   Output format: table or json (default "table")
 

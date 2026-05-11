@@ -1,0 +1,15 @@
+Manage resources attached to a project
+
+USAGE
+  multica project resource <command> [flags]
+
+COMMANDS
+  add:     Attach a resource to a project (e.g. --type github_repo --url <url>)
+  list:    List resources attached to a project
+  remove:  Detach a resource from a project
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica project resource <command> --help` for more information about a command.

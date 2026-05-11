@@ -9,6 +9,7 @@ FLAGS
       --icon string          Project icon (emoji)
       --lead string          Lead name (member or agent)
       --output string        Output format: table or json (default "json")
+      --repo stringArray     Attach a github_repo resource by URL (may be repeated)
       --status string        Project status
       --title string         Project title (required)
 

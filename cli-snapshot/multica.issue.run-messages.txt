@@ -5,6 +5,7 @@ USAGE
 
 FLAGS
   -h, --help            help for run-messages
+      --issue string    Issue ID/key to scope short task ID prefix resolution
       --output string   Output format: table or json (default "json")
       --since int       Only return messages after this sequence number
 

@@ -7,6 +7,7 @@ COMMANDS
   get:      Get workspace details
   list:     List all workspaces you belong to
   members:  List workspace members
+  update:   Update workspace metadata (admin/owner only)
 
 INHERITED FLAGS
   --help   Show help for command

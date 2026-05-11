@@ -4,12 +4,13 @@ USAGE
   multica project <command> [flags]
 
 COMMANDS
-  create:  Create a new project
-  delete:  Delete a project
-  get:     Get project details
-  list:    List projects in the workspace
-  status:  Change project status
-  update:  Update a project
+  create:    Create a new project
+  delete:    Delete a project
+  get:       Get project details
+  list:      List projects in the workspace
+  resource:  Manage resources attached to a project
+  status:    Change project status
+  update:    Update a project
 
 INHERITED FLAGS
   --help   Show help for command
