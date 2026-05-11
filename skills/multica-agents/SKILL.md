@@ -59,6 +59,7 @@ Create flags:
 - `--max-concurrent-tasks` (default 6) — how many tasks this agent runs in parallel
 - `--visibility` — `private` (default, only creator) or `workspace` (everyone)
 - `--custom-args` — JSON array of extra CLI args, e.g. `'["--verbose"]'`
+- `--custom-env` / `--custom-env-file` / `--custom-env-stdin` — JSON object of env vars passed to the agent process. Treated as secret material (never logged by the CLI). `--custom-env` on the command line is visible to shell history and `ps`; prefer `--custom-env-stdin` or `--custom-env-file` (mode 0600) for real secrets. The three flags are mutually exclusive. Pass `'{}'` to clear.
 - `--runtime-config` — JSON object of runtime overrides
 
 ## Updating
@@ -84,6 +85,16 @@ multica agent archive <id>                       # Hide from default list, stop 
 multica agent restore <id>                       # Reactivate
 multica agent list --include-archived            # See archived agents
 ```
+
+## Avatar
+
+Upload an avatar image for an agent (shown on cards and assignee pickers):
+
+```bash
+multica agent avatar <id> --file ./logo.png
+```
+
+`--file` is a local path; the CLI uploads the bytes to the server. Replaces any existing avatar.
 
 ## Assigning workspace skills to an agent
 
@@ -147,12 +158,12 @@ If the workspace has agents named by role (e.g. "Frontend-Claude", "Backend-Code
 An agent is only useful if its assigned runtime is online and has the right CLI installed.
 
 ```bash
-multica runtime list                             # All runtimes the workspace can see
-multica runtime ping <runtime-id> --wait         # Active probe
+multica runtime list                             # All runtimes the workspace can see, with status
+multica runtime activity <runtime-id>            # Has the runtime been doing anything recently?
 multica daemon status --output json              # On the local machine
 ```
 
-If the runtime is offline or has no matching CLI, the issue will sit in its status without execution. See the `multica-daemon` skill for runtime diagnostics.
+If the runtime status is stale or has no matching CLI provider, the issue will sit in its status without execution. See the `multica-daemon` skill for the full diagnostic checklist.
 
 ## Gotchas
 

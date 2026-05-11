@@ -49,6 +49,7 @@ multica setup                                                      # Alias for `
 multica setup self-host                                            # Local self-hosted (http://localhost:8080 / :3000)
 multica setup self-host --port 9090 --frontend-port 4000
 multica setup self-host --server-url https://api.example.com --app-url https://app.example.com
+multica setup self-host --server-url https://api.example.com --callback-host runner.example.com
 ```
 
 `setup self-host` flags:
@@ -56,15 +57,18 @@ multica setup self-host --server-url https://api.example.com --app-url https://a
 - `--app-url` — full frontend URL (e.g. `https://app.internal.co`)
 - `--port` (default 8080) — backend port when `--server-url` is not set
 - `--frontend-port` (default 3000) — frontend port when `--app-url` is not set
+- `--callback-host` — host the OAuth callback URL points at; auto-detected when empty. Set this when the machine running the CLI is behind a reverse proxy / different FQDN than what auto-detection picks, so the browser can return the token to the CLI.
 
 After setup, the daemon runs in the background. Verify with `multica daemon status` and `multica auth status`.
 
 ## Step-by-step (when `setup` is not enough)
 
 ```bash
-multica login                  # Browser OAuth, 90-day token, auto-adds all workspaces
-multica login --token          # Paste a personal access token (headless / CI)
-multica daemon start           # Start background daemon (logs to ~/.multica/daemon.log)
+multica login                                  # Browser OAuth, 90-day token, auto-adds all workspaces
+multica login --token                          # Prompt interactively for a personal access token
+multica login --token mul_xxxxx                # Inline PAT (visible in shell history — prefer the prompt form)
+multica login --callback-host runner.acme.co   # Reverse-proxy / FQDN setups where auto-detection picks the wrong interface
+multica daemon start                           # Start background daemon (logs to ~/.multica/daemon.log)
 ```
 
 ## Authentication checks
@@ -104,10 +108,27 @@ All other commands accept `--profile <name>` the same way.
 ## Updating
 
 ```bash
-multica update                             # Auto-detects install method
-brew upgrade multica-ai/tap/multica        # If installed via Homebrew
-multica version                            # Show current version + commit
+multica update                                     # Auto-detects install method
+multica update --download-timeout 5m               # Bump the default 2-minute archive download timeout on slow networks
+brew upgrade multica-ai/tap/multica                # If installed via Homebrew
+multica version                                    # Show current version + commit
 ```
+
+## Workspace metadata
+
+Admins / owners can edit workspace name, description, context, and issue prefix without leaving the CLI:
+
+```bash
+multica workspace update                                          # Acts on the currently-configured workspace
+multica workspace update <workspace-id>                           # Explicit target
+multica workspace update --name "Backend Team"
+multica workspace update --issue-prefix BE                        # Uppercased server-side
+multica workspace update --description "Owns the API & data layers"
+multica workspace update --description-stdin < readme.md          # Multi-line; preserves literal backslashes
+multica workspace update --context-stdin   < context.md           # Same pattern for the workspace context blob
+```
+
+`--description` and `--context` decode `\n`, `\r`, `\t`, `\\` in the inline string; pipe the `*-stdin` variant when you want the body verbatim.
 
 ## Verification checklist
 

@@ -35,7 +35,7 @@ DELETED=$(git diff --name-only --diff-filter=D "$BASE" -- cli-snapshot 2>/dev/nu
 # Map a snapshot filename to a SKILL.md path; "" if no mapping.
 skill_for() {
   case "$1" in
-    multica.issue.*|multica.attachment.*) echo "skills/multica-issues/SKILL.md" ;;
+    multica.issue.*|multica.attachment.*|multica.label.*) echo "skills/multica-issues/SKILL.md" ;;
     multica.agent.*)                      echo "skills/multica-agents/SKILL.md" ;;
     multica.autopilot.*)                  echo "skills/multica-autopilot/SKILL.md" ;;
     multica.project.*)                    echo "skills/multica-projects/SKILL.md" ;;
@@ -102,7 +102,7 @@ Auto-PRs only commit the new snapshot. Edits to skills are manual on purpose —
 
 | Snapshot prefix                                       | Skill                              |
 |-------------------------------------------------------|------------------------------------|
-| `multica.issue.*`, `multica.attachment.*`             | `skills/multica-issues/SKILL.md`   |
+| `multica.issue.*`, `multica.attachment.*`, `multica.label.*` | `skills/multica-issues/SKILL.md`   |
 | `multica.agent.*`                                     | `skills/multica-agents/SKILL.md`   |
 | `multica.autopilot.*`                                 | `skills/multica-autopilot/SKILL.md`|
 | `multica.project.*`                                   | `skills/multica-projects/SKILL.md` |
