@@ -4,19 +4,20 @@ USAGE
   multica issue create [flags]
 
 FLAGS
-      --assignee string      Assignee name (member or agent; fuzzy match)
-      --assignee-id string   Assignee UUID (mutually exclusive with --assignee)
-      --attachment strings   File path(s) to attach (can be specified multiple times)
-      --description string   Issue description (decodes \n, \r, \t, \\; pipe via --description-stdin to preserve literal backslashes)
-      --description-stdin    Read issue description from stdin (preserves multi-line content verbatim)
-      --due-date string      Due date (RFC3339 format)
-  -h, --help                 help for create
-      --output string        Output format: table or json (default "json")
-      --parent string        Parent issue ID
-      --priority string      Issue priority
-      --project string       Project ID
-      --status string        Issue status
-      --title string         Issue title (required)
+      --assignee string           Assignee name (member or agent; fuzzy match)
+      --assignee-id string        Assignee UUID (mutually exclusive with --assignee)
+      --attachment strings        File path(s) to attach (can be specified multiple times)
+      --description string        Issue description (decodes \n, \r, \t, \\; pipe via --description-stdin to preserve literal backslashes)
+      --description-file string   Read issue description from a UTF-8 file (preserves multi-line content verbatim; use this on Windows when stdin piping mangles non-ASCII bytes)
+      --description-stdin         Read issue description from stdin (preserves multi-line content verbatim)
+      --due-date string           Due date (RFC3339 format)
+  -h, --help                      help for create
+      --output string             Output format: table or json (default "json")
+      --parent string             Parent issue ID
+      --priority string           Issue priority
+      --project string            Project ID
+      --status string             Issue status
+      --title string              Issue title (required)
 
 INHERITED FLAGS
   --help   Show help for command
