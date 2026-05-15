@@ -1,0 +1,19 @@
+Work with squads
+
+USAGE
+  multica squad <command> [flags]
+
+COMMANDS
+  activity:  Record a squad leader evaluation on an issue
+  create:    Create a new squad
+  delete:    Delete (archive) a squad
+  get:       Get squad details
+  list:      List squads in the workspace
+  member:    Work with squad members
+  update:    Update a squad
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica squad <command> --help` for more information about a command.
