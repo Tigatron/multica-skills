@@ -1,4 +1,4 @@
-Assign an issue to a member or agent
+Assign an issue to a member, agent, or squad
 
 USAGE
   multica issue assign <id> [flags]
@@ -6,8 +6,8 @@ USAGE
 FLAGS
   -h, --help            help for assign
       --output string   Output format: table or json (default "json")
-      --to string       Assignee name (member or agent; fuzzy match)
-      --to-id string    Assignee UUID (mutually exclusive with --to)
+      --to string       Assignee name (member, agent, or squad; fuzzy match)
+      --to-id string    Assignee UUID — member, agent, or squad (mutually exclusive with --to)
       --unassign        Remove current assignee
 
 INHERITED FLAGS
