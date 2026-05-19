@@ -1,0 +1,19 @@
+Update a squad
+
+USAGE
+  multica squad update <squad-id> [flags]
+
+FLAGS
+      --avatar-url string     New avatar URL
+      --description string    New description
+  -h, --help                  help for update
+      --instructions string   New instructions
+      --leader string         New leader agent (name or ID)
+      --name string           New name
+      --output string         Output format: table or json (default "json")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

@@ -1,0 +1,15 @@
+Rotate the webhook URL of a webhook trigger
+
+USAGE
+  multica autopilot trigger-rotate-url <autopilot-id> <trigger-id> [flags]
+
+FLAGS
+  -h, --help            help for trigger-rotate-url
+      --output string   Output format: table or json (default "json")
+  -y, --yes             Skip the interactive confirmation prompt
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

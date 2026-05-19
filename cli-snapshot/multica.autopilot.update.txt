@@ -7,8 +7,8 @@ FLAGS
       --agent string                  New assignee agent (name or ID)
       --description string            New description
   -h, --help                          help for update
-      --issue-title-template string   New issue title template
-      --mode string                   New execution mode (create_issue)
+      --issue-title-template string   New issue title template. Only {{date}} (UTC, YYYY-MM-DD) is interpolated; any other {{...}} token is rejected.
+      --mode string                   New execution mode (create_issue or run_only)
       --output string                 Output format: table or json (default "json")
       --priority string               New priority
       --project string                New project ID (use empty string to clear)

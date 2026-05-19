@@ -1,0 +1,16 @@
+Remove a member from a squad
+
+USAGE
+  multica squad member remove <squad-id> [flags]
+
+FLAGS
+  -h, --help               help for remove
+      --member-id string   Member or agent ID (required)
+      --output string      Output format: table or json (default "table")
+      --type string        Member type: agent or member (default "agent")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

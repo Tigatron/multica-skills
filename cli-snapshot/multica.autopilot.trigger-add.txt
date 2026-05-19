@@ -1,14 +1,15 @@
-Add a schedule trigger to an autopilot
+Add a schedule or webhook trigger to an autopilot
 
 USAGE
   multica autopilot trigger-add <autopilot-id> [flags]
 
 FLAGS
-      --cron string       Cron expression (required)
+      --cron string       Cron expression (required for --kind schedule)
   -h, --help              help for trigger-add
+      --kind string       Trigger kind: schedule or webhook (default "schedule")
       --label string      Optional human-readable label
       --output string     Output format: table or json (default "json")
-      --timezone string   IANA timezone (default UTC)
+      --timezone string   IANA timezone (default UTC; schedule only)
 
 INHERITED FLAGS
   --help   Show help for command
