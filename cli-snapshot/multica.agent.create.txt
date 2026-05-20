@@ -9,6 +9,7 @@ FLAGS
       --custom-env-file string       Read the --custom-env JSON object from a file path (suggested mode: 0600). Mutually exclusive with --custom-env and --custom-env-stdin.
       --custom-env-stdin             Read the --custom-env JSON object from stdin. Keeps secrets out of shell history and 'ps'. Mutually exclusive with --custom-env and --custom-env-file.
       --description string           Agent description
+      --from-template string         Template slug to seed the agent from (e.g. code-reviewer). Lists are available via GET /api/agent-templates.
   -h, --help                         help for create
       --instructions string          Agent instructions
       --max-concurrent-tasks int32   Maximum concurrent tasks (default 6)

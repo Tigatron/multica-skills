@@ -1,10 +1,10 @@
-List workspace members
+List squads in the workspace
 
 USAGE
-  multica workspace members [workspace-id] [flags]
+  multica squad list [flags]
 
 FLAGS
-  -h, --help            help for members
+  -h, --help            help for list
       --output string   Output format: table or json (default "table")
 
 INHERITED FLAGS

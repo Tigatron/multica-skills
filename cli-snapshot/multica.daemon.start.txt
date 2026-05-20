@@ -6,6 +6,7 @@ USAGE
 
 FLAGS
       --agent-timeout duration                       Per-task timeout (env: MULTICA_AGENT_TIMEOUT)
+      --auto-update-interval duration                How often to poll GitHub for a newer release (env: MULTICA_DAEMON_AUTO_UPDATE_INTERVAL)
       --codex-semantic-inactivity-timeout duration   Codex semantic inactivity timeout (env: MULTICA_CODEX_SEMANTIC_INACTIVITY_TIMEOUT)
       --daemon-id string                             Unique daemon identifier (env: MULTICA_DAEMON_ID)
       --device-name string                           Human-readable device name (env: MULTICA_DAEMON_DEVICE_NAME)
@@ -13,6 +14,7 @@ FLAGS
       --heartbeat-interval duration                  Heartbeat interval (env: MULTICA_DAEMON_HEARTBEAT_INTERVAL)
   -h, --help                                         help for start
       --max-concurrent-tasks int                     Max tasks running in parallel (env: MULTICA_DAEMON_MAX_CONCURRENT_TASKS)
+      --no-auto-update                               Disable periodic CLI self-update (env: MULTICA_DAEMON_AUTO_UPDATE=false)
       --poll-interval duration                       Task poll interval (env: MULTICA_DAEMON_POLL_INTERVAL)
       --runtime-name string                          Runtime display name (env: MULTICA_AGENT_RUNTIME_NAME)
 
