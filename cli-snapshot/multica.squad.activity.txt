@@ -1,0 +1,23 @@
+Record the squad leader's evaluation decision for an issue.
+
+Outcome must be one of:
+  action     — leader delegated or took action
+  no_action  — leader evaluated and decided no action needed
+  failed     — leader encountered an error
+
+This command is intended to be called by squad leader agents after each
+trigger to record their decision in the issue timeline.
+
+USAGE
+  multica squad activity <issue-id> <outcome> [flags]
+
+FLAGS
+  -h, --help            help for activity
+      --output string   Output format: table or json (default "table")
+      --reason string   Short explanation of the decision
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

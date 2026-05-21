@@ -1,0 +1,14 @@
+Get or update your personal profile
+
+USAGE
+  multica user profile <command> [flags]
+
+COMMANDS
+  get:     Show your current user profile
+  update:  Update your user profile (currently: profile description)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica user profile <command> --help` for more information about a command.

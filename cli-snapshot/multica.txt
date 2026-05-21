@@ -11,6 +11,7 @@ CORE COMMANDS
   project:    Work with projects
   repo:       Work with repositories
   skill:      Work with skills
+  squad:      Work with squads
   workspace:  Work with workspaces
 
 RUNTIME COMMANDS
@@ -24,6 +25,7 @@ ADDITIONAL COMMANDS
   login:       Authenticate and set up workspaces
   setup:       Configure the CLI, authenticate, and start the daemon
   update:      Update multica to the latest version
+  user:        Work with your user account
   version:     Print version information
 
 FLAGS

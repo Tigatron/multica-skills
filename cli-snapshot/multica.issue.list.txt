@@ -4,8 +4,8 @@ USAGE
   multica issue list [flags]
 
 FLAGS
-      --assignee string      Filter by assignee name (member or agent; fuzzy match)
-      --assignee-id string   Filter by assignee UUID (mutually exclusive with --assignee)
+      --assignee string      Filter by assignee name (member, agent, or squad; fuzzy match)
+      --assignee-id string   Filter by assignee UUID — member, agent, or squad (mutually exclusive with --assignee)
       --full-id              Show full UUIDs in table output
   -h, --help                 help for list
       --limit int            Maximum number of issues to return (default 50)

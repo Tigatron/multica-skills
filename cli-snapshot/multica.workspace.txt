@@ -4,10 +4,11 @@ USAGE
   multica workspace <command> [flags]
 
 COMMANDS
-  get:      Get workspace details
-  list:     List all workspaces you belong to
-  members:  List workspace members
-  update:   Update workspace metadata (admin/owner only)
+  get:     Get workspace details
+  list:    List all workspaces you belong to
+  member:  Manage workspace members
+  switch:  Set the default workspace for this profile
+  update:  Update workspace metadata (admin/owner only)
 
 INHERITED FLAGS
   --help   Show help for command

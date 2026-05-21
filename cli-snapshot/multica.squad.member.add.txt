@@ -1,0 +1,17 @@
+Add a member to a squad
+
+USAGE
+  multica squad member add <squad-id> [flags]
+
+FLAGS
+  -h, --help               help for add
+      --member-id string   Member or agent ID (required)
+      --output string      Output format: table or json (default "json")
+      --role string        Role in the squad (default "member")
+      --type string        Member type: agent or member (default "agent")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

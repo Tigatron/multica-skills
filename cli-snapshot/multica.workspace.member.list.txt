@@ -1,10 +1,9 @@
-List all workspaces you belong to
+List workspace members
 
 USAGE
-  multica workspace list [flags]
+  multica workspace member list [workspace-id] [flags]
 
 FLAGS
-      --full-id         Show full UUIDs in table output
   -h, --help            help for list
       --output string   Output format: table or json (default "table")
 
