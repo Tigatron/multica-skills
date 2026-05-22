@@ -1,0 +1,17 @@
+Create a new squad
+
+USAGE
+  multica squad create [flags]
+
+FLAGS
+      --description string   Squad description
+  -h, --help                 help for create
+      --leader string        Leader agent (name or ID) — required
+      --name string          Squad name (required)
+      --output string        Output format: table or json (default "json")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

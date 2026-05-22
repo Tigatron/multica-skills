@@ -1,7 +1,7 @@
 Update workspace metadata (admin/owner only)
 
 USAGE
-  multica workspace update [workspace-id] [flags]
+  multica workspace update [workspace-id|slug|prefix] [flags]
 
 FLAGS
       --context string        New workspace context (decodes \n, \r, \t, \\; pipe via --context-stdin to preserve literal backslashes)

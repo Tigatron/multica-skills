@@ -1,0 +1,16 @@
+Manage per-issue metadata (KV)
+
+USAGE
+  multica issue metadata <command> [flags]
+
+COMMANDS
+  delete:  Delete a single metadata key
+  get:     Get a single metadata key value
+  list:    List all metadata keys on an issue
+  set:     Set a single metadata key value
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica issue metadata <command> --help` for more information about a command.

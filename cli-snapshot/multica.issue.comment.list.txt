@@ -4,9 +4,14 @@ USAGE
   multica issue comment list <issue-id> [flags]
 
 FLAGS
-  -h, --help            help for list
-      --output string   Output format: table or json (default "table")
-      --since string    Only return comments created after this timestamp (RFC3339)
+      --before string      Cursor (RFC3339Nano timestamp). With --recent: thread cursor (last_activity_at). With --thread + --tail: reply cursor (reply created_at). Read from the X-Multica-Next-Before response header; must be paired with --before-id.
+      --before-id string   Cursor UUID. With --recent: thread root UUID. With --thread + --tail: oldest reply UUID. Read from the X-Multica-Next-Before-Id response header; must be paired with --before.
+  -h, --help               help for list
+      --output string      Output format: table or json (default "table")
+      --recent int         Return the N most recently active threads (root + descendants per thread). Use --before/--before-id from the previous response to scroll to older threads.
+      --since string       Only return comments created after this timestamp (RFC3339)
+      --tail int           Only valid with --thread. Cap reply count to the N most recent replies; the thread root is always included (even with --tail 0). Use --before/--before-id to scroll to older replies.
+      --thread string      Comment UUID — return the thread containing this comment (root + every descendant). May be a root or a reply id.
 
 INHERITED FLAGS
   --help   Show help for command

@@ -1,10 +1,11 @@
-List workspace members
+Delete a single metadata key
 
 USAGE
-  multica workspace members [workspace-id] [flags]
+  multica issue metadata delete <issue-id> [flags]
 
 FLAGS
-  -h, --help            help for members
+  -h, --help            help for delete
+      --key string      Metadata key (required)
       --output string   Output format: table or json (default "table")
 
 INHERITED FLAGS

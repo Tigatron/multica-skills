@@ -1,0 +1,13 @@
+Work with your user account
+
+USAGE
+  multica user <command> [flags]
+
+COMMANDS
+  profile:  Get or update your personal profile
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica user <command> --help` for more information about a command.
