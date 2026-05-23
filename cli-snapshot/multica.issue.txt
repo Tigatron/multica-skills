@@ -4,12 +4,14 @@ USAGE
   multica issue <command> [flags]
 
 COMMANDS
-  assign:        Assign an issue to a member or agent
+  assign:        Assign an issue to a member, agent, or squad
+  cancel-task:   Cancel a running or queued task (interrupts in-flight agent)
   comment:       Work with issue comments
   create:        Create a new issue
   get:           Get issue details
   label:         Manage labels on an issue
   list:          List issues in the workspace
+  metadata:      Manage per-issue metadata (KV)
   rerun:         Re-enqueue an issue's current agent assignment as a fresh task
   run-messages:  List messages for an execution
   runs:          List execution history for an issue

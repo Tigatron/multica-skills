@@ -1,0 +1,15 @@
+Work with squad members
+
+USAGE
+  multica squad member <command> [flags]
+
+COMMANDS
+  add:     Add a member to a squad
+  list:    List members of a squad
+  remove:  Remove a member from a squad
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica squad member <command> --help` for more information about a command.

@@ -4,12 +4,13 @@ USAGE
   multica issue comment add <issue-id> [flags]
 
 FLAGS
-      --attachment strings   File path(s) to attach (can be specified multiple times)
-      --content string       Comment content (decodes \n, \r, \t, \\; pipe via --content-stdin for multi-line bodies or to preserve literal backslashes)
-      --content-stdin        Read comment content from stdin (preserves multi-line content verbatim)
-  -h, --help                 help for add
-      --output string        Output format: table or json (default "json")
-      --parent string        Parent comment ID (reply to a specific comment)
+      --attachment strings    File path(s) to attach (can be specified multiple times)
+      --content string        Comment content (decodes \n, \r, \t, \\; pipe via --content-stdin for multi-line bodies or to preserve literal backslashes)
+      --content-file string   Read comment content from a UTF-8 file (preserves multi-line content verbatim; use this on Windows when stdin piping mangles non-ASCII bytes)
+      --content-stdin         Read comment content from stdin (preserves multi-line content verbatim)
+  -h, --help                  help for add
+      --output string         Output format: table or json (default "json")
+      --parent string         Parent comment ID (reply to a specific comment)
 
 INHERITED FLAGS
   --help   Show help for command

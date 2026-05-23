@@ -1,10 +1,11 @@
-Prints the full details of a workspace. The argument accepts a full UUID, a slug, or a short UUID prefix (≥4 hex chars) as shown in 'workspace list'. If omitted, the current default workspace is used.
+Get a single metadata key value
 
 USAGE
-  multica workspace get [workspace-id|slug|prefix] [flags]
+  multica issue metadata get <issue-id> [flags]
 
 FLAGS
   -h, --help            help for get
+      --key string      Metadata key (required)
       --output string   Output format: table or json (default "json")
 
 INHERITED FLAGS

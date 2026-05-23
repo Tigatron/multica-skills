@@ -1,0 +1,15 @@
+Cancel a single task by its ID. Accepts the short ID prefix shown by `issue runs`. Use --issue to scope short-ID resolution to a specific issue when ambiguous. Triggers daemon-side interrupt of any in-flight agent so it stops emitting tool calls promptly.
+
+USAGE
+  multica issue cancel-task <task-id> [flags]
+
+FLAGS
+  -h, --help            help for cancel-task
+      --issue string    Issue ID/key to scope short task ID prefix resolution
+      --output string   Output format: table or json (default "json")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

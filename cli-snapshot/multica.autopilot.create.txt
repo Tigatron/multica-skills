@@ -7,8 +7,8 @@ FLAGS
       --agent string                  Assignee agent (name or ID) — required
       --description string            Autopilot description (used as task prompt)
   -h, --help                          help for create
-      --issue-title-template string   Template for issue titles (create_issue mode)
-      --mode string                   Execution mode: create_issue (required). run_only is not yet supported end-to-end.
+      --issue-title-template string   Template for issue titles (create_issue mode). Only {{date}} (UTC, YYYY-MM-DD) is interpolated; any other {{...}} token is rejected at create-time.
+      --mode string                   Execution mode: create_issue or run_only (required)
       --output string                 Output format: table or json (default "json")
       --priority string               Priority for created issues (none, low, medium, high, urgent) (default "none")
       --project string                Project ID (optional)
