@@ -1,0 +1,22 @@
+Set a single metadata key value. The value is JSON-parsed by default:
+  --value true / --value false  → bool
+  --value 3 / --value 3.14      → number
+  --value waiting               → string
+Use --type to force a specific type. Quote like '"42"' (JSON-escaped) to force
+a string when the bare value would otherwise sniff as a number or bool.
+
+USAGE
+  multica issue metadata set <issue-id> [flags]
+
+FLAGS
+  -h, --help            help for set
+      --key string      Metadata key (required)
+      --output string   Output format: table or json (default "table")
+      --type string     Force value type: string, number, or bool (default: auto-infer via JSON parsing)
+      --value string    Metadata value (required)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

@@ -1,0 +1,24 @@
+Set the personal profile description that gets injected into agent briefs as `## Requesting User`. Pass an empty value to clear it.
+
+Pick the input mode that preserves your content:
+  --description "..."          inline (decodes \n / \t escapes)
+  --description-stdin           pipe a HEREDOC (preserves verbatim)
+  --description-file <path>     read a UTF-8 file (Windows-safe)
+
+
+USAGE
+  multica user profile update [flags]
+
+FLAGS
+      --clear                     Clear the profile description (equivalent to --description "")
+      --description string        New profile description (decodes \n, \r, \t, \\; pipe via --description-stdin to preserve literal backslashes)
+      --description-file string   Read description from a UTF-8 file (preserves multi-line content verbatim; use this on Windows when stdin piping mangles non-ASCII bytes)
+      --description-stdin         Read description from stdin (preserves multi-line content verbatim)
+  -h, --help                      help for update
+      --output string             Output format: table or json (default "table")
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

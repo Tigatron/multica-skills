@@ -1,0 +1,17 @@
+Sets the default workspace for the current profile after verifying you have access to it. Accepts a full UUID, a slug, or a short UUID prefix (≥4 hex chars) as shown in 'workspace list'. Subsequent commands without --workspace-id or MULTICA_WORKSPACE_ID will target this workspace.
+
+Resolution priority (highest to lowest): --workspace-id flag, MULTICA_WORKSPACE_ID env, profile default (set by this command).
+
+For low-level use, 'multica config set workspace_id <id>' writes the same setting without verification.
+
+USAGE
+  multica workspace switch <workspace-id|slug|prefix> [flags]
+
+FLAGS
+  -h, --help   help for switch
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

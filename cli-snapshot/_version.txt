@@ -1,2 +1,2 @@
-multica 0.2.29 (commit: 1d4595ff, built: 2026-05-09T09:58:44Z)
+multica 0.3.6 (commit: 0339599f, built: 2026-05-22T10:06:53Z)
 go: go1.26.1, os/arch: linux/amd64
