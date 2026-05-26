@@ -7,6 +7,7 @@ COMMANDS
   archive:  Archive an agent
   avatar:   Upload an avatar image for an agent
   create:   Create a new agent
+  env:      Read and update an agent's custom environment variables (audited)
   get:      Get agent details
   list:     List agents in the workspace
   restore:  Restore an archived agent
