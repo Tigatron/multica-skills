@@ -5,9 +5,6 @@ USAGE
 
 FLAGS
       --custom-args string           New custom CLI arguments as JSON array. For model selection prefer --model; some providers (codex app-server, openclaw) reject --model in custom_args.
-      --custom-env string            New custom environment variables as JSON object, e.g. '{"KEY":"value"}'. Treated as secret material — never logged by the CLI, but values passed on the command line are visible to shell history and 'ps'; prefer --custom-env-stdin or --custom-env-file for real secrets. Pass '{}' to clear the map; omit the flag to leave it unchanged.
-      --custom-env-file string       Read the new --custom-env JSON object from a file path (suggested mode: 0600). Mutually exclusive with --custom-env and --custom-env-stdin.
-      --custom-env-stdin             Read the new --custom-env JSON object from stdin. Keeps secrets out of shell history and 'ps'. Mutually exclusive with --custom-env and --custom-env-file.
       --description string           New description
   -h, --help                         help for update
       --instructions string          New instructions
