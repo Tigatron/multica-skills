@@ -1,0 +1,23 @@
+Edit an attached resource (ref payload, label, or position)
+
+USAGE
+  multica project resource update <project-id> <resource-id> [flags]
+
+FLAGS
+      --clear-label                  Clear the human-readable label
+      --daemon-id string             Shortcut: new daemon id (local_directory)
+      --default-branch-hint string   Shortcut: new default branch hint (github_repo)
+  -h, --help                         help for update
+      --label string                 New human-readable label; pass an empty string to clear
+      --local-path string            Shortcut: new absolute local path (local_directory)
+      --output string                Output format: table or json (default "json")
+      --position int32               New display position
+      --ref string                   Generic JSON resource_ref payload — overrides per-type shortcuts when set
+      --ref-label string             Shortcut: new label embedded in resource_ref (local_directory)
+      --url string                   Shortcut: new repo URL (github_repo)
+
+INHERITED FLAGS
+  --help   Show help for command
+
+LEARN MORE
+  Use `multica <command> <subcommand> --help` for more information about a command.

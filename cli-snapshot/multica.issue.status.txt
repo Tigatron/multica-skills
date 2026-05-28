@@ -1,4 +1,4 @@
-Change issue status
+Change an issue's status. Valid statuses: backlog, todo, in_progress, in_review, done, blocked, cancelled.
 
 USAGE
   multica issue status <id> <status> [flags]
