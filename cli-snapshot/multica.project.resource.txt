@@ -7,6 +7,7 @@ COMMANDS
   add:     Attach a resource to a project (e.g. --type github_repo --url <url>)
   list:    List resources attached to a project
   remove:  Detach a resource from a project
+  update:  Edit an attached resource (ref payload, label, or position)
 
 INHERITED FLAGS
   --help   Show help for command
