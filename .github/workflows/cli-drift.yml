@@ -5,6 +5,11 @@ name: cli-drift
 # reviewer updates the affected SKILL.md files. Gotchas / Common flows /
 # description frontmatter are explicitly out of scope for this automation
 # (they're the part of each skill that --help cannot replace).
+#
+# A single rolling branch `sync/cli-latest` is reused across CLI versions so
+# only one open drift PR exists at a time. The PR title and body always
+# reflect the latest snapshot version; reviewer edits pushed to the branch
+# are preserved across daily runs.
 
 on:
   schedule:
@@ -82,7 +87,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          BRANCH="sync/cli-${VERSION}"
+          BRANCH="sync/cli-latest"
 
           # Preserve any reviewer edits already pushed to this branch by
           # checking it out and reapplying our fresh snapshot on top.
@@ -106,9 +111,7 @@ jobs:
 
       - name: Push branch
         if: steps.drift.outputs.drifted == 'true' && inputs.dry-run != true
-        env:
-          VERSION: ${{ steps.drift.outputs.version }}
-        run: git push origin "sync/cli-${VERSION}"
+        run: git push --force-with-lease origin sync/cli-latest
 
       - name: Generate PR body
         if: steps.drift.outputs.drifted == 'true'
@@ -126,11 +129,13 @@ jobs:
           VERSION: ${{ steps.drift.outputs.version }}
         run: |
           set -euo pipefail
-          BRANCH="sync/cli-${VERSION}"
+          BRANCH="sync/cli-latest"
 
           PR_NUM=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || true)
           if [ -n "$PR_NUM" ]; then
-            gh pr edit "$PR_NUM" --body-file /tmp/pr-body.md
+            gh pr edit "$PR_NUM" \
+              --title "Sync skills with multica CLI ${VERSION}" \
+              --body-file /tmp/pr-body.md
             echo "Updated PR #$PR_NUM"
           else
             gh pr create \
@@ -145,6 +150,6 @@ jobs:
       - name: Dry-run summary
         if: steps.drift.outputs.drifted == 'true' && inputs.dry-run == true
         run: |
-          echo "Dry-run: would have pushed sync/cli-${{ steps.drift.outputs.version }} and opened a PR."
+          echo "Dry-run: would have pushed sync/cli-latest (snapshot ${{ steps.drift.outputs.version }}) and opened or updated the rolling PR."
           echo
           cat /tmp/pr-body.md
